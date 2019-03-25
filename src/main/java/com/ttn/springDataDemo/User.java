@@ -2,7 +2,8 @@ package com.ttn.springDataDemo;
 
 import java.util.Date;
 
-public class User {  String name;
+public class User {
+    String name;
     String username;
     String password;
     Integer age;

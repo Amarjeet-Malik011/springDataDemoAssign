@@ -19,12 +19,12 @@ public class UserDAO4 {
     @Transactional(propagation = Propagation.NESTED, rollbackFor = RuntimeException.class)
     public void insert(){
         String sql="INSERT INTO user(username,password,name,age,dob)VALUES(?,?,?,?,?)";
-        jdbcTemplate.update(sql,new Object[]{"bkj","321","Vimal",62,new Date()});
+        jdbcTemplate.update(sql,new Object[]{"DAO4","321","Vimal",62,new Date()});
         try {
             userDAO5.insert();
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
-        /*throw new RuntimeException("Exception arrised");*/
+//        throw new RuntimeException("Exception arrised");
     }
 }

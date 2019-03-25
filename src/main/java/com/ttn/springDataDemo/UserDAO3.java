@@ -30,7 +30,7 @@ public class UserDAO3 {
     @Autowired
     UserDAO4 userDAO4;
 
-    void print() throws SQLException{
+    void printUserNames() throws SQLException{
         Connection connection=dataSource.getConnection();
         PreparedStatement preparedStatement=connection.prepareStatement("SELECT * FROM  user");
         ResultSet resultSet=preparedStatement.executeQuery();
@@ -47,12 +47,12 @@ public class UserDAO3 {
 
     String getUserName(){
         String sql="SELECT name FROM user WHERE username = ?";
-        return jdbcTemplate.queryForObject(sql,new Object[]{"pkj"},String.class);
+        return jdbcTemplate.queryForObject(sql,new Object[]{"adi"},String.class);
     }
 
     void QueryForMap(){
         String sql="SELECT * FROM user WHERE username=?";
-        System.out.println( jdbcTemplate.queryForMap(sql,new Object[]{"pkj"}));
+        System.out.println( jdbcTemplate.queryForMap(sql,new Object[]{"adi"}));
     }
 
     void QueryForList(){
@@ -65,33 +65,23 @@ public class UserDAO3 {
         return jdbcTemplate.queryForObject(sql,new Object[]{username},new UserMapper());
     }
 
-    void insertUser(User user) {
-        String sql = "INSERT INTO user (username,password,name,age,dob)VALUES(?,?,?,?,?)";
-        jdbcTemplate.update(sql, new Object[]{
-                user.getUsername(), user.getPassword(), user.getName(), user.getAge(), user.getDob()
-        });
-    }
-
     void sessionFactoryHibernate(){
         String sql="SELECT COUNT(*) FROM Person";
         Query query= sessionFactory.openSession().createQuery(sql);
-        System.out.println("COUNT="+((org.hibernate.query.Query) query).uniqueResult());
-
+        System.out.println("COUNT="+query.uniqueResult());
     }
-
-
 
     @Transactional(propagation = Propagation.REQUIRED, timeout = 2,readOnly = false)
     public void insert(){
         try {
-            Thread.sleep(2000L);
+            Thread.sleep(1000L);
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
 
 
         String sql="INSERT INTO user(username,password,name,age,dob)VALUES(?,?,?,?,?)";
-        jdbcTemplate.update(sql,new Object[]{"tkj","123","Tarun",26,new Date()});
+        jdbcTemplate.update(sql,new Object[]{"DAO3","123","Tarun",26,new Date()});
 
         try {
             userDAO4.insert();

@@ -18,7 +18,7 @@ public class UserDAO {
         this.dataSource = dataSource;
     }
 
-    void printUserNames() throws SQLException {
+    void printNames() throws SQLException {
         Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user");
         ResultSet resultSet = preparedStatement.executeQuery();

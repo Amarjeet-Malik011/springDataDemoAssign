@@ -16,7 +16,7 @@ public class UserDAO5 {
     @Transactional(propagation = Propagation.MANDATORY,noRollbackFor = RuntimeException.class)
     public void insert() {
         String sql = "INSERT INTO user(username,password,name,age,dob)VALUES(?,?,?,?,?)";
-        jdbcTemplate.update(sql, new Object[]{"prj", "4321", "Pooja", 21, new Date()});
+        jdbcTemplate.update(sql, new Object[]{"DAO5", "4321", "Pooja", 21, new Date()});
 
         throw new RuntimeException();
     }
